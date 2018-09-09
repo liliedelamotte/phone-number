@@ -15,7 +15,20 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     private static String _parsedPhoneNumberAreaCode;
     private static String _parsedPhoneNumberPrefix;
     private static String _parsedPhoneNumberLineNumber;
+    private static boolean _parsedPhoneNumberIsValid;
     private static boolean _isValidPhoneNumber;
+    
+    private static int _digit1;
+    private static int _digit2;
+    private static int _digit3;
+    private static int _digit4;
+    private static int _digit5;
+    private static int _digit6;
+    private static int _digit7;
+    private static int _digit8;
+    private static int _digit9;
+    private static int _digit10;
+    
 
     
     /**
@@ -100,7 +113,7 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     
     
     /**
-     * 
+     * TODO--------------------------------------------------------------------------------------------------------------------------------------------
      */
     public int compareTo(PhoneNumber o) {
         return 1;
@@ -109,6 +122,8 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     
     /**
      * 
+     * TODO--------------------------------------------------------------------------------------------------------------------------------------------
+     * 
      * @param areaCode
      * @param prefix
      * @param lineNumber
@@ -116,11 +131,24 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
      */
     public static boolean isValidPhoneNumber(String areaCode, String prefix, String lineNumber) {
         
-        if (Integer.parseInt(areaCode.substring(0, 1)) < 2 || Integer.parseInt(areaCode.substring(0, 1)) > 9) {
-            return false;
+        _digit1 = Integer.parseInt(areaCode.substring(0, 1));
+        _digit2 = Integer.parseInt(areaCode.substring(1, 2));
+        _digit3 = Integer.parseInt(areaCode.substring(2, 3));
+        _digit4 = Integer.parseInt(prefix.substring(0, 1));
+        _digit5 = Integer.parseInt(prefix.substring(1, 2));
+        _digit6 = Integer.parseInt(prefix.substring(2, 3));
+        _digit7 = Integer.parseInt(lineNumber.substring(0, 1));
+        _digit8 = Integer.parseInt(lineNumber.substring(1, 2));
+        _digit9 = Integer.parseInt(lineNumber.substring(2, 3));
+        _digit10 = Integer.parseInt(lineNumber.substring(3, 4));
+        
+        
+        if (_digit1 < 2 || _digit4 < 2) {
+            _isValidPhoneNumber = false;
         }
         
-        return true;
+        
+        return _isValidPhoneNumber;
         
     }
     
@@ -144,11 +172,11 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
         _parsedPhoneNumberLineNumber = _parsedPhoneNumber.substring(6, 9);
         
         // checks to see if the phone number is valid or not
-        _isValidPhoneNumber = isValidPhoneNumber(_parsedPhoneNumberAreaCode, 
+        _parsedPhoneNumberIsValid = isValidPhoneNumber(_parsedPhoneNumberAreaCode, 
                 _parsedPhoneNumberPrefix, _parsedPhoneNumberLineNumber);
         
         // returns a new phone number if the phone number is valid
-        if (_isValidPhoneNumber) {
+        if (_parsedPhoneNumberIsValid) {
             return (new PhoneNumber(_parsedPhoneNumberAreaCode, 
                     _parsedPhoneNumberPrefix, _parsedPhoneNumberLineNumber));
         }
