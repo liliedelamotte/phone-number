@@ -126,9 +126,14 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     
     
     /**
+     * Takes in a String of ten digits in XXX-XXX-XXXX format that represents 
+     * a phone number. Given phone number is then removed of dashes and then 
+     * checked for validity. If the number is valid, a new PhoneNumber object 
+     * is returned. If not, an Illegal Argument Exception is thrown.
      * 
-     * @param phoneNumber
-     * @return
+     * @param phoneNumber, a String of ten digits in XXX-XXX-XXXX format
+     * 
+     * @return a new PhoneNumber object assuming the phone number was valid
      */
     public static PhoneNumber parsePhoneNumber(String phoneNumber) throws IllegalArgumentException {
         
