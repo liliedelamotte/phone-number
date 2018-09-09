@@ -10,6 +10,12 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     private String _areaCode;
     private String _prefix;
     private String _lineNumber;
+    
+    private static String _parsedPhoneNumber;
+    private static String _parsedPhoneNumberAreaCode;
+    private static String _parsedPhoneNumberPrefix;
+    private static String _parsedPhoneNumberLineNumber;
+    private static boolean _isValidPhoneNumber;
 
     
     /**
@@ -124,8 +130,30 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
      * @param phoneNumber
      * @return
      */
-    public static PhoneNumber parsePhoneNumber(PhoneNumber phoneNumber) throws IllegalArgumentException {
-        return phoneNumber;
+    public static PhoneNumber parsePhoneNumber(String phoneNumber) throws IllegalArgumentException {
+        
+        // rids phone number of dashes and from these digits creates an area code, prefix, and line number. 
+        _parsedPhoneNumber = phoneNumber.replace('-', '\0');
+        _parsedPhoneNumberAreaCode = _parsedPhoneNumber.substring(0, 3);
+        _parsedPhoneNumberPrefix = _parsedPhoneNumber.substring(3, 6);
+        _parsedPhoneNumberLineNumber = _parsedPhoneNumber.substring(6, 9);
+        
+        // checks to see if the phone number is valid or not
+        _isValidPhoneNumber = isValidPhoneNumber(_parsedPhoneNumberAreaCode, 
+                _parsedPhoneNumberPrefix, _parsedPhoneNumberLineNumber);
+        
+        // returns a new phone number if the phone number is valid
+        if (_isValidPhoneNumber) {
+            return (new PhoneNumber(_parsedPhoneNumberAreaCode, 
+                    _parsedPhoneNumberPrefix, _parsedPhoneNumberLineNumber));
+        }
+        
+        // throws an illegal argument exception if the phone number is not valid
+        else {
+            throw new IllegalArgumentException("That's not a valid phone number!");
+        }
+        
+
     }
     
 }
