@@ -15,13 +15,16 @@ public class PhoneNumberTest {
     private static final String VALID_PHONE_NUMBER_DIGITS = "5038605147";
     private static final String VALID_PHONE_NUMBER_STRING = "503-860-5147";
 
-    // initializes constants that represent various parts of a second PhoneNumber
+    // initializes constants that represent various parts of a 
+    // second PhoneNumber
     private static final String SECOND_VALID_AREA_CODE = "503";
     private static final String SECOND_VALID_PREFIX = "913";
     private static final String SECOND_VALID_LINE_NUMBER = "9992";
 
     // initializes a constant of an invalid PhoneNumber String
     private static final String INVALID_PHONE_NUMBER_STRING = "000-000-0000";
+    // ADD MESSAGES TO TESTS ------------------------------------------------------------------------------------------------------------------
+    // I COULD POTENTIALLY ADD SOME STUFF HERE AND DO MORE THINGS WITH PARSEPHONENUM --------------------------------------------------
 
     // initializes constant that represent various invalid inputs
     private static final String CHARACTERS_IN_AREA_CODE = "Yo!";
@@ -56,8 +59,10 @@ public class PhoneNumberTest {
     @BeforeClass
     public static void setUp() {
 
-        _firstPhoneNumber = new PhoneNumber(VALID_AREA_CODE, VALID_PREFIX, VALID_LINE_NUMBER);
-        _secondPhoneNumber = new PhoneNumber(SECOND_VALID_AREA_CODE, SECOND_VALID_PREFIX, SECOND_VALID_LINE_NUMBER);
+        _firstPhoneNumber = new PhoneNumber(VALID_AREA_CODE, VALID_PREFIX, 
+                VALID_LINE_NUMBER);
+        _secondPhoneNumber = new PhoneNumber(SECOND_VALID_AREA_CODE, 
+                SECOND_VALID_PREFIX, SECOND_VALID_LINE_NUMBER);
 
     }
 
@@ -107,7 +112,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to area code being too short
+     *  Tests the blocked construction of a PhoneNumber due to area code being
+     *  too short
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_areaCodeTooShort() {
@@ -118,7 +124,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to prefix being too short
+     *  Tests the blocked construction of a PhoneNumber due to prefix being
+     *  too short
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_prefixTooShort() {
@@ -129,7 +136,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to line number being too short
+     *  Tests the blocked construction of a PhoneNumber due to line number being
+     *  too short
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_lineNumberTooShort() {
@@ -140,7 +148,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to area code being too long
+     *  Tests the blocked construction of a PhoneNumber due to area code being
+     *  too long
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_areaCodeTooLong() {
@@ -151,7 +160,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to prefix being too long
+     *  Tests the blocked construction of a PhoneNumber due to prefix being
+     *  too long
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_prefixTooLong() {
@@ -162,7 +172,8 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to line number being too long
+     *  Tests the blocked construction of a PhoneNumber due to line number being
+     *  too long
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_lineNumberTooLong() {
@@ -173,34 +184,40 @@ public class PhoneNumberTest {
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to characters in area code
+     *  Tests the blocked construction of a PhoneNumber due to characters in
+     *  area code
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_charactersInAreaCode() {
 
-        new PhoneNumber(CHARACTERS_IN_AREA_CODE, VALID_PREFIX, VALID_LINE_NUMBER);
+        new PhoneNumber(CHARACTERS_IN_AREA_CODE, VALID_PREFIX,
+                VALID_LINE_NUMBER);
 
     }
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to characters in prefix
+     *  Tests the blocked construction of a PhoneNumber due to characters
+     *  in prefix
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_charactersInPrefix() {
 
-        new PhoneNumber(VALID_AREA_CODE, CHARACTERS_IN_PREFIX, VALID_LINE_NUMBER);
+        new PhoneNumber(VALID_AREA_CODE, CHARACTERS_IN_PREFIX,
+                VALID_LINE_NUMBER);
 
     }
 
 
     /**
-     *  Tests the blocked construction of a PhoneNumber due to characters in line number
+     *  Tests the blocked construction of a PhoneNumber due to characters in
+     *  line number
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_charactersInLineNumber() {
 
-        new PhoneNumber(VALID_AREA_CODE, VALID_PREFIX, CHARACTERS_IN_LINE_NUMBER);
+        new PhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                CHARACTERS_IN_LINE_NUMBER);
 
     }
 
@@ -233,7 +250,8 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_getAreaCode() {
 
-        assertThat("The area code not valid.", _firstPhoneNumber.getAreaCode(), equalTo(VALID_AREA_CODE));
+        assertThat("The area code not valid.", _firstPhoneNumber.getAreaCode(),
+                equalTo(VALID_AREA_CODE));
 
     }
 
@@ -244,7 +262,8 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumer_getPrefix() {
 
-        assertThat("The prefix is not valid.", _firstPhoneNumber.getPrefix(), equalTo(VALID_PREFIX));
+        assertThat("The prefix is not valid.", _firstPhoneNumber.getPrefix(),
+                equalTo(VALID_PREFIX));
 
     }
 
@@ -255,7 +274,8 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumer_getLineNumber() {
 
-        assertThat("The line number is not valid.", _firstPhoneNumber.getLineNumber(), equalTo(VALID_LINE_NUMBER));
+        assertThat("The line number is not valid.",
+                _firstPhoneNumber.getLineNumber(), equalTo(VALID_LINE_NUMBER));
 
     }
 
@@ -266,7 +286,8 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumer_getDigits() {
 
-        assertThat(_firstPhoneNumber.getDigits(), equalTo(VALID_PHONE_NUMBER_DIGITS));
+        assertThat(_firstPhoneNumber.getDigits(),
+                equalTo(VALID_PHONE_NUMBER_DIGITS));
 
     }
 
@@ -277,7 +298,8 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_toString() {
 
-        assertThat(_firstPhoneNumber.toString(), equalTo(VALID_PHONE_NUMBER_STRING));
+        assertThat(_firstPhoneNumber.toString(),
+                equalTo(VALID_PHONE_NUMBER_STRING));
 
     }
 
@@ -310,18 +332,47 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_validInput() {
 
-        assertTrue(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX, VALID_LINE_NUMBER));
+        assertTrue(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                VALID_LINE_NUMBER));
 
     }
 
 
     /**
-     *  Tests the validation of null input
+     *  Tests the validation of null area code
      */
     @Test
-    public void test_PhoneNumber_isValidPhoneNumber_nullInput() {
+    public void test_PhoneNumber_isValidPhoneNumber_nullAreaCode() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(null, null, null));
+        assertFalse("The area code is null.",
+                PhoneNumber.isValidPhoneNumber(null, VALID_PREFIX,
+                        VALID_LINE_NUMBER));
+
+    }
+
+
+    /**
+     *  Tests the validation of null prefix
+     */
+    @Test
+    public void test_PhoneNumber_isValidPhoneNumber_nullPrefix() {
+
+        assertFalse("The prefix is null.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, null,
+                        VALID_LINE_NUMBER));
+
+    }
+
+
+    /**
+     *  Tests the validation of null line number
+     */
+    @Test
+    public void test_PhoneNumber_isValidPhoneNumber_nullLineNumber() {
+
+        assertFalse("The line number is null.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                        null));
 
     }
 
@@ -332,7 +383,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_charactersInAreaCode() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(CHARACTERS_IN_AREA_CODE, VALID_PREFIX, VALID_LINE_NUMBER));
+        assertFalse("There are invalid characters in the area code.",
+                PhoneNumber.isValidPhoneNumber(CHARACTERS_IN_AREA_CODE,
+                        VALID_PREFIX, VALID_LINE_NUMBER));
 
     }
 
@@ -343,7 +396,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_charactersInPrefix() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, CHARACTERS_IN_PREFIX, VALID_LINE_NUMBER));
+        assertFalse("There are invalid characters in the prefix.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE,
+                        CHARACTERS_IN_PREFIX, VALID_LINE_NUMBER));
 
     }
 
@@ -354,7 +409,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_charactersInLineNumber() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX, CHARACTERS_IN_LINE_NUMBER));
+        assertFalse("There are invalid characters in the line number.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                        CHARACTERS_IN_LINE_NUMBER));
 
     }
 
@@ -365,7 +422,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_areaCodeTooLong() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(AREA_CODE_TOO_LONG, VALID_PREFIX, VALID_LINE_NUMBER));
+        assertFalse("The area code is too long.",
+                PhoneNumber.isValidPhoneNumber(AREA_CODE_TOO_LONG, VALID_PREFIX,
+                        VALID_LINE_NUMBER));
 
     }
 
@@ -376,7 +435,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_prefixTooLong() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, PREFIX_TOO_LONG, VALID_LINE_NUMBER));
+        assertFalse("The prefix is too long.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, PREFIX_TOO_LONG,
+                        VALID_LINE_NUMBER));
 
     }
 
@@ -387,7 +448,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_lineNumberTooLong() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX, LINE_NUMBER_TOO_LONG));
+        assertFalse("The line number is too long.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                        LINE_NUMBER_TOO_LONG));
 
     }
 
@@ -398,7 +461,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_areaCodeTooShort() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(AREA_CODE_TOO_SHORT, VALID_PREFIX, VALID_LINE_NUMBER));
+        assertFalse("The area code is too short.",
+                PhoneNumber.isValidPhoneNumber(AREA_CODE_TOO_SHORT,
+                        VALID_PREFIX, VALID_LINE_NUMBER));
 
     }
 
@@ -409,7 +474,9 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_prefixTooShort() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, PREFIX_TOO_SHORT, VALID_LINE_NUMBER));
+        assertFalse("The prefix is too short.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE,
+                        PREFIX_TOO_SHORT, VALID_LINE_NUMBER));
 
     }
 
@@ -420,51 +487,62 @@ public class PhoneNumberTest {
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_lineNumberTooShort() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX, LINE_NUMBER_TOO_SHORT));
+        assertFalse("The line number is too short.",
+                PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, VALID_PREFIX,
+                        LINE_NUMBER_TOO_SHORT));
 
     }
 
 
     /**
-     *  Tests the validation of input where the area code does not meet PhoneNumber specifications
+     *  Tests the validation of input where the area code does not meet
+     *  PhoneNumber specifications
      */
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_invalidAreaCode() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(INVALID_AREA_CODE, VALID_PREFIX, VALID_LINE_NUMBER));
+        assertFalse("The area code does not meet spec.",
+                PhoneNumber.isValidPhoneNumber(INVALID_AREA_CODE, VALID_PREFIX,
+                        VALID_LINE_NUMBER));
 
     }
 
 
     /**
-     *  Tests the validation of input where the prefix does not meet PhoneNumber specifications
+     *  Tests the validation of input where the prefix does not meet
+     *  PhoneNumber specifications
      */
     @Test
     public void test_PhoneNumber_isValidPhoneNumber_invalidPrefix() {
 
-        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE, INVALID_PREFIX, VALID_LINE_NUMBER));
+        assertFalse(PhoneNumber.isValidPhoneNumber(VALID_AREA_CODE,
+                INVALID_PREFIX, VALID_LINE_NUMBER));
 
     }
 
 
     /**
-     * Tests the accuracy of turning a valid phone number String into a PhoneNumber object
+     * Tests the accuracy of turning a valid phone number String into a
+     * PhoneNumber object
      */
     @Test
     public void test_PhoneNumber_parsePhoneNumber_validInputWithDashes() {
 
-        assertTrue(PhoneNumber.parsePhoneNumber(VALID_PHONE_NUMBER_STRING) instanceof PhoneNumber);
+        assertTrue(PhoneNumber.parsePhoneNumber(VALID_PHONE_NUMBER_STRING)
+                instanceof PhoneNumber);
 
     }
 
 
     /**
-     * Tests the accuracy of turning an invalid String of digits into a PhoneNumber object
+     * Tests the accuracy of turning an invalid String of digits into a
+     * PhoneNumber object
      */
     @Test(expected = IllegalArgumentException.class)
     public void test_PhoneNumber_parsePhoneNumber_invalidInput() {
 
-        assertFalse(PhoneNumber.parsePhoneNumber(INVALID_PHONE_NUMBER_STRING) instanceof PhoneNumber);
+        assertFalse(PhoneNumber.parsePhoneNumber(INVALID_PHONE_NUMBER_STRING)
+                instanceof PhoneNumber);
 
     }
 
