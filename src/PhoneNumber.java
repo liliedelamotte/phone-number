@@ -12,19 +12,25 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
     private String _prefix;
     private String _lineNumber;
 
-
     /**
-     * The PhoneNumber constructor method. Takes in the area code, prefix,
-     * and line number of a phone number. All three parts of the phone number
-     * are sent in separately. The area code and prefix are each 3 digits
-     * long and allow [2-9][0-9][0-9], and the line number is 4 digits long
-     * and allows [0–9] for each of the four digits.
+     * The PhoneNumber constructor method takes in the area code, prefix, and line number 
+     * of a phone number separately. The area code and prefix are each 3 digits long and 
+     * allow [2-9][0-9][0-9]. The line number is 4 digits long and allows [0–9] for each 
+     * of the four digits. Validation occurs and an exception is thrown if not passed.
      *
      * @param areaCode, the first three digits of a PhoneNumber object.
      * @param prefix, the second three digits of a PhoneNumber object.
      * @param lineNumber, the last four digits of a PhoneNumber object.
      */
     public PhoneNumber(String areaCode, String prefix, String lineNumber) {
+
+        // checks to see if the phone number is valid or not
+        if (!isValidPhoneNumber(areaCode, prefix, lineNumber)) {
+            throw new IllegalArgumentException("Make sure that the area code and "
+                    + "prefix are each 3 digits long and allow [2-9][0-9][0-9], and "
+                    + "that the line number is 4 digits long and allows [0–9] for "
+                    + "each of the four digits.\n");
+        }
 
         _areaCode = areaCode;
         _prefix = prefix;
@@ -126,28 +132,12 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
      */
     public static boolean isValidPhoneNumber(String areaCode, String prefix, String lineNumber) {
 
-        return (areaCode.matches("[2-9][0-9][0-9]")
-                && prefix.matches("[2-9][0-9][0-9]")
-                && lineNumber.matches("[0-9][0-9][0-9][0-9]")
-                && areaCode != null
+        return (areaCode != null
                 && prefix != null
-                && lineNumber != null);
-
-    }
-
-
-    /**
-     * Takes in an array of Strings containing each section of the PhoneNumber and makes
-     * sure that there are exactly three parts (area code, prefix, and line number), no
-     * more or less.
-     *
-     * @param parsedPhoneNumber, the array of Strings containing each section of PhoneNumber.
-     *
-     * @return a true or false value representing whether or not PhoneNumber meets specification.
-     */
-    private static boolean isValidPhoneNumber(String[] parsedPhoneNumber) {
-
-        return (parsedPhoneNumber.length == 3);
+                && lineNumber != null
+                && areaCode.matches("[2-9][0-9][0-9]")
+                && prefix.matches("[2-9][0-9][0-9]")
+                && lineNumber.matches("[0-9][0-9][0-9][0-9]"));
 
     }
 
@@ -164,23 +154,21 @@ public class PhoneNumber implements Comparable<PhoneNumber> {
      */
     public static PhoneNumber parsePhoneNumber(String phoneNumber) throws IllegalArgumentException {
 
-        String[] parsedPhoneNumber = phoneNumber.split("-");
+        String[] parsedPhoneNumber;
 
-        // checks to see if the phone number is valid or not
-        if (!isValidPhoneNumber(parsedPhoneNumber)
-                || !isValidPhoneNumber(parsedPhoneNumber[0], parsedPhoneNumber[1], parsedPhoneNumber[2])) {
-            throw new IllegalArgumentException("Sorry, one or more of the phone number(s) is not a "
-                    + "valid phone number! Make sure that the phone number(s) sent in are in "
-                    + "XXX-XXX-XXXX format, that the area code and prefix are each 3 digits "
-                    + "long and allow [2-9][0-9][0-9], and that the line number is 4 "
-                    + "digits long and allows [0–9] for each of the four digits.\n");
+        if (phoneNumber == null) {
+            throw new IllegalArgumentException("Make sure that no null values are sent in.");
         }
 
-        // if phone number is valid, a new phone number object is created
-        else {
-            return (new PhoneNumber(parsedPhoneNumber[0], parsedPhoneNumber[1], parsedPhoneNumber[2]));
+        parsedPhoneNumber = phoneNumber.split("-");
+
+        if (parsedPhoneNumber.length != 3) {
+            throw new IllegalArgumentException("Make sure all phone numbers have three parts: an area "
+                    + "code, a prefix, and a line number.");
         }
 
+        // a new phone number object is created
+        return (new PhoneNumber(parsedPhoneNumber[0], parsedPhoneNumber[1], parsedPhoneNumber[2]));
     }
 
 }

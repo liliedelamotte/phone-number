@@ -45,7 +45,7 @@ public class PhoneNumberSorter {
         exitStatusCode = determineExitStatusCode(numberOfExceptions, phoneNumbers);
         
         // prints phone numbers out one per line if all phone numbers are valid
-        if (exitStatusCode == 2) {
+        if (exitStatusCode == 0) {
             for (PhoneNumber phoneNumber : phoneNumbers) {
                 System.out.println(phoneNumber);
             }
