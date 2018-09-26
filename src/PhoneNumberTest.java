@@ -22,7 +22,13 @@ public class PhoneNumberTest {
     private static final String SECOND_VALID_LINE_NUMBER = "9992";
 
     // initializes a constant of an invalid PhoneNumber String
-    private static final String INVALID_PHONE_NUMBER_STRING = "000-000-0000";
+    private static final String INVALID_PHONE_NUMBER_STRING_WITH_CHARACTERS
+        = "ABC-DEF-GHIJ";
+    private static final String INVALID_PHONE_NUMBER_STRING_TOO_LONG
+        = "4565-3743-84038";
+    private static final String INVALID_PHONE_NUMBER_STRING_TOO_SHORT
+        = "34-56-456";
+    private static final String INVALID_PHONE_NUMBER_STRING = "000-111-2222";
     // ADD MESSAGES TO TESTS ------------------------------------------------------------------------------------------------------------------
     // I COULD POTENTIALLY ADD SOME STUFF HERE AND DO MORE THINGS WITH PARSEPHONENUM --------------------------------------------------
 
@@ -542,6 +548,48 @@ public class PhoneNumberTest {
     public void test_PhoneNumber_parsePhoneNumber_invalidInput() {
 
         assertFalse(PhoneNumber.parsePhoneNumber(INVALID_PHONE_NUMBER_STRING)
+                instanceof PhoneNumber);
+
+    }
+
+
+    /**
+     * Tests the accuracy of turning an invalid String of digits with characters
+     * into a PhoneNumber object
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void test_PhoneNumber_parsePhoneNumber_charactersInString() {
+
+        assertFalse(PhoneNumber.parsePhoneNumber
+                (INVALID_PHONE_NUMBER_STRING_WITH_CHARACTERS)
+                instanceof PhoneNumber);
+
+    }
+
+
+    /**
+     * Tests the accuracy of turning an invalid String of digits because it is
+     * too long into a PhoneNumber object
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void test_PhoneNumber_parsePhoneNumber_stringTooLong() {
+
+        assertFalse(PhoneNumber.parsePhoneNumber
+                (INVALID_PHONE_NUMBER_STRING_TOO_LONG)
+                instanceof PhoneNumber);
+
+    }
+
+
+    /**
+     * Tests the accuracy of turning an invalid String of digits because it is
+     * too short into a PhoneNumber object
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void test_PhoneNumber_parsePhoneNumber_stringTooShort() {
+
+        assertFalse
+            (PhoneNumber.parsePhoneNumber(INVALID_PHONE_NUMBER_STRING_TOO_SHORT)
                 instanceof PhoneNumber);
 
     }
